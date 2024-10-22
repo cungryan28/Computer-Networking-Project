@@ -14,7 +14,7 @@ This project is a template for creating socket-based client-server applications 
 
 To build the project, follow these steps:
 
-1. Install [CMake](https://cmake.org/) and [vcpkg](https://github.com/microsoft/vcpkg).
+1. Install [CMake](https://cmake.org/).
 2. Configure the project using CMake:
     ```sh
     cmake -S . -B build
@@ -37,15 +37,6 @@ After building the project, you can run the client and server applications:
     ```sh
     ./build/Debug/client.exe
     ```
-
-
-## License
-
-This project is licensed under the MIT License. See the [LICENSE.txt](vcpkg/LICENSE.txt) file for details.
-
-## Contributing
-
-Contributions are welcome! Please see the [CONTRIBUTING.md](vcpkg/CONTRIBUTING.md) file for guidelines.
 
 ## Contact
 
