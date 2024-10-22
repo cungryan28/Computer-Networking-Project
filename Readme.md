@@ -30,12 +30,12 @@ After building the project, you can run the client and server applications:
 
 - To run the server:
     ```sh
-    ./build/server.exe
+    ./build/Debug/server.exe
     ```
 
 - To run the client:
     ```sh
-    ./build/client.exe
+    ./build/Debug/client.exe
     ```
 
 
