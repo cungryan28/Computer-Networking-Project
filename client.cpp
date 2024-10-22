@@ -24,5 +24,8 @@ int main() {
         return 1;
     }
 
+    std::string s = "SHUTDOWN";
+    send(client.getSocket(), s.c_str(), static_cast<int>(s.length()), 0);
+
     return 0;
 }
