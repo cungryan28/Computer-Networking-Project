@@ -1,14 +1,10 @@
 #include "ServerDriver.hpp"
 #include <windows.h>
 
-#pragma comment( lib, "advapi32.lib" )
-
-#include <windows.h>
-
 #pragma comment(lib, "user32.lib")
 #pragma comment(lib, "advapi32.lib")
 
-BOOL Driver::MySystemShutdown()
+BOOL WinAPI::MySystemShutdown()
 {
    HANDLE hToken; 
    TOKEN_PRIVILEGES tkp; 
@@ -45,4 +41,9 @@ BOOL Driver::MySystemShutdown()
 
    //shutdown was successful
    return TRUE;
+}
+
+BOOL WinAPI::MySystemRestart(LPWSTR lpMsg)
+{
+   return TRUE; 
 }

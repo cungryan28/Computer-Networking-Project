@@ -1,3 +1,5 @@
+#pragma once
+
 #include <iostream>
 #include <winsock2.h>
 #include <ws2tcpip.h>
@@ -34,26 +36,6 @@ public:
         return serverSocket;
     }
 
-
-    void handleMessage(SOCKET &clientSocket) {
-        char buffer[1024] = {0};
-        int bytesReceived = recv(clientSocket, buffer, sizeof(buffer) - 1, 0);
-        if (bytesReceived > 0) {
-            buffer[bytesReceived] = '\0';
-            std::cout << "Message from server: " << buffer << '\n';
-        } else {
-            std::cerr << "Failed to receive message from the server.\n";
-            exit(1);
-        }
-
-        std::string s(buffer);
-        if (s == "SHUTDOWN") {
-            // LPTSTR message = L"Shutdown";
-            Driver::MySystemShutdown();
-        } else {
-            std::string message_to_client = "INVALID MESSAGE";
-            send(clientSocket, message_to_client.c_str(), static_cast<int> (message_to_client.length()), 0);
-        }
-    }
+    void handleEvent(ServerSocket &server, SOCKET &clientSocket, std::string message);
 
 };
