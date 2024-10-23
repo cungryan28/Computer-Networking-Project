@@ -1,6 +1,5 @@
 #include "ServerSocket.hpp"
 
-
 ServerSocket::ServerSocket() {
     WSADATA wsaSATA;
     if (WSAStartup(MAKEWORD(2, 2), &wsaSATA) != 0) {
@@ -33,4 +32,25 @@ ServerSocket::ServerSocket() {
 
     std::cout << "Server is listening on port " << PORT << "...\n";
 
+}
+
+void ServerSocket::handleEvent(ServerSocket &server, SOCKET &clientSocket, std::string message) {
+    if (message == "SHUTDOWN") {
+        WinAPI::MySystemShutdown();
+    } else if (message == "RESTART") {
+        LPWSTR message = L"RESTART";
+        WinAPI::MySystemRestart(message);
+    } else if (message == "GET API") {
+        server.sendIPAddress(clientSocket);
+    } else if (message == "HELLO SERVER") {
+        message = "Hello from server!";
+        server.sendMessage(clientSocket, &message[0]);
+    } else if (message == "STOP") {
+        this->~ServerSocket();
+        closesocket(clientSocket);
+        exit(0);
+    } else {
+        std::string message_to_client = "INVALID MESSAGE";
+        send(clientSocket, message_to_client.c_str(), static_cast<int>(message_to_client.length()), 0);
+    } 
 }
